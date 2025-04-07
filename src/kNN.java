@@ -39,14 +39,20 @@ class NeuronN {
 
 // Simple neural network with 2 input neurons, 2 hidden neurons, 1 output neuron
 class SimpleNeuralNetwork {
-    NeuronN hidden1 = new NeuronN(2);
-    NeuronN hidden2 = new NeuronN(2);
-    NeuronN output = new NeuronN(2);
+    NeuronN hidden1;
+    NeuronN hidden2;
+    NeuronN output;
+
+    public SimpleNeuralNetwork(int inputSize) {
+        hidden1 = new NeuronN(inputSize);
+        hidden2 = new NeuronN(inputSize);
+        output = new NeuronN(2); // 2 Hidden-Ausgaben
+    }
 
     public String neuronDisplay(){
        String weights = hidden1.toString();
        String weights2 = hidden1.toString();
-       String output2 = hidden1.toString();
+       String output2 = output.toString();
        return "w1" + weights +
                " w2" + weights2 + " " +
                "OP" + output2;
@@ -83,7 +89,7 @@ class SimpleNeuralNetwork {
 
 public class kNN {
     public static void main(String[] args) {
-        SimpleNeuralNetwork net = new SimpleNeuralNetwork();
+        SimpleNeuralNetwork net = new SimpleNeuralNetwork(2);
 
         System.out.println(net.neuronDisplay());
 
@@ -95,7 +101,7 @@ public class kNN {
                 {0.2, 0.1}  // dog
         };
 
-        double[] labels = {
+        double[] labels = { //was erwartet wird
                 1.0,
                 0.0,
                 1.0,
